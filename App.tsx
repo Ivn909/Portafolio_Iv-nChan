@@ -1,20 +1,39 @@
-import { StyleSheet, Text, View } from "react-native";
-import Actividades from "./components/Actividades";
+import { StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-import Inicio from "./components/Inicio";
-import { createStackNavigator } from "@react-navigation/stack";
-import Pantalla3 from "./components/Pantalla3";
+import Home from "./screen/Home";
+import { createDrawerNavigator, DrawerContent } from "@react-navigation/drawer";
+import React from "react";
+import gallery from "./screen/gallery";
+import Pokemones from "./screen/Pokemones";
 
-const navegador = createStackNavigator();
+const Drawer = createDrawerNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <navegador.Navigator>
-        <navegador.Screen name="Inicio" component={Inicio} />
-        <navegador.Screen name="Actividades" component={Actividades} />
-        <navegador.Screen name="Pantalla3" component={Pantalla3} />
-      </navegador.Navigator>
+      <Drawer.Navigator
+        initialRouteName="Home"
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: "#ff6210",
+          },
+          headerTintColor: "#FFF",
+          headerTitleStyle: {
+            fontWeight: "bold",
+          },
+          drawerInactiveTintColor: "FFF",
+          drawerActiveTintColor: "#e91e63",
+          drawerActiveBackgroundColor: "#333",
+          drawerContentContainerStyle: {
+            backgroundColor: "#333",
+            height: "100%",
+          },
+        }}
+      >
+        <Drawer.Screen name="Home" component={Home} />
+        <Drawer.Screen name="Gallery" component={gallery} />
+        <Drawer.Screen name="Pokemones" component={Pokemones} />
+      </Drawer.Navigator>
     </NavigationContainer>
   );
 }
